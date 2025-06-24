@@ -1,14 +1,10 @@
-import { gql } from '@apollo/client';
-
-const GET_USER = gql`
-  query GetUser($id: ID!) {
-    user(id: $id) {
-      "id": 1,
-      "name": "Anakin Skywalker",
-      "status": "active",
-      "species": "human",
-      "type": "jedi",
-      "gender": "male"
+query GetCharacterById{
+    character(id:1){
+        id
+        name
+        status
+        species
+        type
+        gender
     }
-  }
-`;
+}

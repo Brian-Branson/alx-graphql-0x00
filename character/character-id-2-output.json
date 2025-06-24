@@ -1,43 +1,12 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_USER } from '../graphql/queries';
-
-interface User {
-  id: string;
-  name: string;
-  type: string;
-  gender: string;
-  status: string;
-  species: string;
+{
+  "data": {
+    "character": {
+      "id": "2",
+      "name": "Morty Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male"
+    }
+  }
 }
-
-interface UserData {
-  user: User;
-}
-
-interface UserVars {
-  id: string;
-}
-
-const UserProfile: React.FC<{ userId: string }> = ({ userId }) => {
-  const { loading, error, data } = useQuery<UserData, UserVars>(GET_USER, {
-    variables: { id: userId },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  if (!data?.user) return <p>User not found</p>;
-
-  return (
-    <div>
-      <h1>{data.user.name}</h1>
-      <p>Status: {data.user.status}</p>
-      <p>Species: {data.user.species}</p>
-      <p>Type: {data.user.type}</p>
-      <p>Gender: {data.user.gender}</p>
-    </div>
-  );
-};
-
-export default UserProfile;
